@@ -1,1 +1,23 @@
+-- view usuarios ativos --
+CREATE VIEW active_users_view AS
+SELECT id, name, email
+FROM users
+WHERE active = true;
 
+-- função para checar status do usuario --
+CREATE OR REPLACE FUNCTION check_user_status(p_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    usuario users%ROWTYPE;
+BEGIN
+    SELECT * INTO usuario FROM users WHERE id = p_id;
+
+    IF NOT FOUND THEN
+        RETURN 'Usuário não encontrado';
+    ELSIF usuario.active = true THEN
+        RETURN 'Usuário ativo';
+    ELSE
+        RETURN 'Usuário inativo';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
