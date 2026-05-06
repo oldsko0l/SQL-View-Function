@@ -1,1 +1,6 @@
-
+INSERT INTO users (name, email, active) VALUES
+('Ana Silva', 'ana@email.com', true),
+('Carlos Souza', 'carlos@email.com', false),
+('Maria Oliveira', 'maria@email.com', true),
+('João Santos', 'joao@email.com', false),
+('Fernanda Lima', 'fernanda@email.com', true);
